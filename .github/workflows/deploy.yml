@@ -78,8 +78,8 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Install Hugo modules
-        run: hugo mod get -u
+      - name: Install Go modules
+        run: go mod download
 
       - name: Build with Hugo
         env:
