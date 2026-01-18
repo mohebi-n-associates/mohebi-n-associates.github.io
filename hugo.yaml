@@ -7,13 +7,7 @@
 baseURL: 'https://mohebi-n-associates.github.io/website/'
 title: 'Mohebi & Associates'
 copyright: '© {year} The Board of Regents of the University of Wisconsin System'
-
-# Hugo modules (Hugo Blox)
-module:
-  imports:
-    - path: github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-netlify
-    - path: github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-reveal
-    - path: github.com/HugoBlox/hugo-blox-builder/modules/blox-tailwind
+theme: basic
 
 # =============================================================================
 # Site Parameters

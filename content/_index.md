@@ -1,29 +1,5 @@
 ---
-title: "Mohebi & Associates"
-type: landing
-
-sections:
-  - block: hero
-    content:
-      title: Decoding the Neuromodulatory Logic of Decision Making
-      text: We investigate how dopamine, acetylcholine, and serotonin orchestrate learning and adaptive behavior across multiple timescales.
-    design:
-      background:
-        color: '#0f172a'
-        text_color_light: true
-
-  - block: markdown
-    content:
-      title: Research Focus
-      text: |
-        ### Large-scale Electrophysiology
-        Recording from hundreds of neurons simultaneously using Neuropixels probes.
-        
-        ### Optical Imaging
-        Real-time monitoring of neuromodulator dynamics using fiber photometry.
-        
-        ### Computational Modeling
-        Developing theories of how neuromodulatory signals shape learning.
+title: "Home"
 ---
           icon_pack: fas
           description: |
