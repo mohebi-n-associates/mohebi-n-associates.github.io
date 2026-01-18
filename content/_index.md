@@ -1,103 +1,30 @@
 ---
-# =============================================================================
-# Mohebi Lab Homepage
-# This file controls the homepage layout using Hugo Blox widgets
-# =============================================================================
 title: "Mohebi & Associates"
 type: landing
 
-# Design configuration
-design:
-  # CSS classes for the page
-  css_class: dark
-
 sections:
-  # ===========================================================================
-  # HERO SECTION
-  # ===========================================================================
   - block: hero
-    id: hero
     content:
-      title: |
-        Decoding the
-        **Neuromodulatory Logic**
-        of Decision Making
-      text: |
-        We investigate how **dopamine**, **acetylcholine**, and **serotonin** 
-        orchestrate learning and adaptive behavior across multiple timescales.
-        
-        {{% cta cta_link="/research/" cta_text="Explore Our Research →" %}}
-        {{% cta cta_link="/publication/" cta_text="View Publications" cta_new_tab="false" %}}
-      
-    design:
-      spacing:
-        padding: ['200px', '0', '200px', '0']
-      background:
-        gradient_start: '#0f172a'
-        gradient_end: '#1e293b'
-        gradient_angle: 135
-        text_color_light: true
-
-  # ===========================================================================
-  # NEUROMODULATOR BADGES
-  # ===========================================================================
-  - block: markdown
-    id: neuromodulators
-    content:
-      title: ""
-      text: |
-        <div class="flex flex-wrap justify-center gap-4 py-8">
-          <span class="px-4 py-2 rounded-lg bg-blue-500/10 border border-blue-500/30 font-mono text-sm text-blue-400">
-            DA // Dopamine
-          </span>
-          <span class="px-4 py-2 rounded-lg bg-purple-500/10 border border-purple-500/30 font-mono text-sm text-purple-400">
-            ACh // Acetylcholine
-          </span>
-          <span class="px-4 py-2 rounded-lg bg-cyan-500/10 border border-cyan-500/30 font-mono text-sm text-cyan-400">
-            5-HT // Serotonin
-          </span>
-          <span class="px-4 py-2 rounded-lg bg-pink-500/10 border border-pink-500/30 font-mono text-sm text-pink-400">
-            NE // Norepinephrine
-          </span>
-        </div>
+      title: Decoding the Neuromodulatory Logic of Decision Making
+      text: We investigate how dopamine, acetylcholine, and serotonin orchestrate learning and adaptive behavior across multiple timescales.
     design:
       background:
         color: '#0f172a'
+        text_color_light: true
 
-  # ===========================================================================
-  # RESEARCH PILLARS
-  # ===========================================================================
-  - block: features
-    id: research-pillars
+  - block: markdown
     content:
-      title: Three Pillars of Discovery
-      subtitle: Integrating cutting-edge techniques to unravel neuromodulatory complexity
-      text: ""
-      items:
-        - name: Large-scale Electrophysiology
-          icon: bolt
-          icon_pack: fas
-          description: |
-            Recording from hundreds of neurons simultaneously across prefrontal cortex 
-            and basal ganglia using high-density **Neuropixels probes**.
-            
-            - Neuropixels 2.0
-            - Prefrontal Cortex (PFC)
-            - Basal Ganglia Circuits
+      title: Research Focus
+      text: |
+        ### Large-scale Electrophysiology
+        Recording from hundreds of neurons simultaneously using Neuropixels probes.
         
-        - name: Optical Imaging
-          icon: eye
-          icon_pack: fas
-          description: |
-            Real-time monitoring of neuromodulator dynamics using genetically-encoded 
-            sensors and **multi-site fiber photometry**.
-            
-            - Fiber Photometry
-            - 2-Photon Microscopy
-            - GRAB/dLight Sensors
+        ### Optical Imaging
+        Real-time monitoring of neuromodulator dynamics using fiber photometry.
         
-        - name: Computational Modeling
-          icon: microchip
+        ### Computational Modeling
+        Developing theories of how neuromodulatory signals shape learning.
+---
           icon_pack: fas
           description: |
             Building biologically-informed models of learning and decision-making 
