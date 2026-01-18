@@ -1,0 +1,90 @@
+{
+  "coreValues": [
+    {
+      "title": "Inclusive Excellence",
+      "description": "Embracing Diversity and Fostering Belonging"
+    },
+    {
+      "title": "Compassionate Collaboration",
+      "description": "Supporting Each Other's Growth and Well-Being"
+    },
+    {
+      "title": "Equitable Innovation",
+      "description": "Ensuring Fairness and Accessibility in Research and Opportunity"
+    },
+    {
+      "title": "Respectful Dialogue",
+      "description": "Valuing Diverse Perspectives and Open Communication"
+    }
+  ],
+  "story": "We are a diverse group of scientists united by a common goal: understanding how complex behavior arises from the interaction between brain cells and neurochemicals. We are part of the Department of Psychology at the University of Wisconsin-Madison. We welcome students and postdocs from ALL backgrounds. If you share our passion, you should grab your ticket and suitcase and join us, on this train.",
+  "members": [
+    {
+      "name": "Ali Mohebi, PhD",
+      "role": "Principal Investigator",
+      "image": "ali-mohebi.jpg",
+      "bio": "I'm a behavioral neuroscientist with a background in electrical engineering. I studied EE at Sharif University of Technology, University of Tehran, and Michigan State University before diving into behavioral neurobiology at Josh Berke's lab (University of Michigan and UCSF). I'm fascinated by all aspects of systems neuroscience, from modeling neural circuits and cognitive processes to data analysis and experimental design. When I'm not immersed in research, I enjoy watching films, taking photos, baking, cooking, and listening to music. One day, I will learn how to play the Setar.",
+      "links": {
+        "twitter": "https://twitter.com/mohebial",
+        "instagram": "https://www.instagram.com/mohebial/",
+        "email": "amohebi@wisc.edu",
+        "website": "https://www.mohebial.com"
+      }
+    },
+    {
+      "name": "Robert Spencer, PhD",
+      "role": "Research Scientist",
+      "image": "rob-spencer.jpg",
+      "bio": "",
+      "links": {
+        "email": "rcspencer@wisc.edu"
+      }
+    },
+    {
+      "name": "Esther Lara Gonzalez, PhD",
+      "role": "Postdoctoral Scholar",
+      "image": "esther-lara.jpg",
+      "bio": "",
+      "links": {}
+    },
+    {
+      "name": "Lilian Pelattini",
+      "role": "Graduate Student",
+      "image": "lilian-pelattini.jpg",
+      "bio": "I received my B.S. in Neurobiology & Physiology from University of California-Davis in 2021. After graduation, I worked in Josh Berke's lab at UCSF as a lab technician studying dopamine's role in learning and motivation. I am most interested in the effects of neuromodulators on cognitive processes and reward-seeking behaviors. Outside of lab, I enjoy reading, cooking, horror movies, listening to music, and crossword puzzles. I'm currently working my way through the New York Times crossword archive.",
+      "links": {
+        "email": "pelattini@wisc.edu"
+      }
+    },
+    {
+      "name": "Tianrui Yang",
+      "role": "Undergraduate Student",
+      "image": "tianrui-yang.jpg",
+      "bio": "I'm a senior undergraduate student at the University of Wisconsin-Madison, majoring in Neurobiology and Computer Science. My primary interest is in computational neuroscience, particularly in building models to understand and simulate human cognitive processes. I am especially fascinated by how these models can illuminate complex neural circuits and cognitive functions. Outside of my academic pursuits, I enjoy drawing, baking, rock climbing, and immersing myself in the world of Japanese anime. I'm also a cat lover and have a cute Ragdoll cat.",
+      "links": {
+        "email": "tyang325@wisc.edu"
+      }
+    }
+  ],
+  "collaborators": [
+    {
+      "name": "Vijay Mohan K Namboodiri",
+      "institution": "UCSF",
+      "image": "vijay-namboodiri.jpg",
+      "url": ""
+    },
+    {
+      "name": "Tommaso Patriarchi",
+      "institution": "University of Zurich",
+      "image": "tommaso-patriarchi.jpg",
+      "url": ""
+    },
+    {
+      "name": "Shervin Safavi",
+      "institution": "TU Dresden",
+      "image": "shervin-safavi.jpg",
+      "url": ""
+    }
+  ],
+  "alumni": []
+}

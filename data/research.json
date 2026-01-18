@@ -1,0 +1,43 @@
+{
+  "overview": "In our lab, we explore how the brain adapts to environmental changes through learning, a key aspect of intelligence. Learning occurs at various timescales, from rapid changes at the level of synapses to gradual adjustments in neurons and brain circuits. We focus on how psychological states like arousal, stress, and motivation influence these learning processes. Our research centers on understanding how key neuromodulators—such as Dopamine, Acetylcholine, Norepinephrine, and Serotonin—affect information processing and decision-making. By investigating how these chemical signals interact within the brain, we aim to uncover the mechanisms behind neurological and psychiatric conditions like ADHD, schizophrenia, and OCD. Our findings promise to advance our knowledge of brain function and hold the potential to inspire the development of advanced, biologically inspired neural networks with human-like cognitive abilities.",
+  "projects": [
+    {
+      "id": "dopamine-pfc-wm",
+      "title": "Dopaminergic Modulation of Prefrontal Cortex During Working Memory",
+      "description": "Our research investigates how dopamine (DA) affects the prefrontal cortex (PFC) during working memory tasks. Disruptions in DA signaling in the PFC are linked to cognitive challenges in conditions like schizophrenia and ADHD. Despite extensive study, the exact mechanisms of how DA modulates PFC activity during working memory remain unclear, limiting our understanding of these mental disorders.",
+      "approach": "To address this, we use advanced techniques to examine DA signaling in the PFC while performing a working memory task. We will use viral tools to distinguish different DA cell types and test if certain DA cells influence how information is processed in the PFC. By employing new optical sensors and microendoscopes, we aim to track DA changes in real-time and their impact on working memory performance.",
+      "goal": "Our goal is to shed light on how DA modulates cognitive functions and provide new insights into the underlying mechanisms of mental health disorders.",
+      "image": "research-pfc.jpg"
+    },
+    {
+      "id": "dopamine-learning-motivation",
+      "title": "Exploring Dopamine's Role in Learning and Motivation",
+      "description": "This line of research investigates how dopamine (DA) influences both learning and motivation. Traditionally, DA's role in learning is linked to reward prediction errors, where DA cell bursts align with rewards. However, the impact of DA on motivation—driving effort and action—has been less clear.",
+      "approach": "We examined this by training rats on a task and comparing DA release patterns in the midbrain and forebrain using advanced techniques. We found that DA release increases with reward expectation and effort initiation, but does not directly match DA cell firing. Instead, motivational DA signals appear to be locally regulated in specific brain regions.",
+      "goal": "Our studies also show that acetylcholine (ACh) ramps up alongside DA during motivated behavior, suggesting a combined role in driving effort and action.",
+      "image": "research-motivation.jpg"
+    }
+  ],
+  "techniques": [
+    {
+      "name": "In vivo Electrophysiology",
+      "description": "Using multielectrode arrays including Neuropixels for large-scale neural recordings",
+      "icon": "electrode"
+    },
+    {
+      "name": "Multi-Site Fiber Photometry",
+      "description": "Multi-color fiber photometry for simultaneous recording from multiple brain regions",
+      "icon": "fiber"
+    },
+    {
+      "name": "Calcium Imaging",
+      "description": "Wide-field and cellular-level imaging of biosensors including GCaMP variants",
+      "icon": "microscope"
+    },
+    {
+      "name": "Optogenetics",
+      "description": "Light-based control of genetically-defined neural populations",
+      "icon": "light"
+    }
+  ]
+}
