@@ -6,6 +6,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { people, Person } from '@/data/people';
 
+const BASE_PATH = '/website';
+const getImagePath = (src: string) => {
+    if (src.startsWith('http')) return src;
+    return src.startsWith('/') ? `${BASE_PATH}${src}` : src;
+};
+
 const SectionHeading = ({ children }: { children: React.ReactNode }) => (
     <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -30,7 +36,7 @@ const PersonCard = ({ person }: { person: Person }) => (
             <div className="w-16 h-16 rounded-full overflow-hidden bg-slate-800 shrink-0 relative">
                 {person.image ? (
                     <Image
-                        src={person.image}
+                        src={getImagePath(person.image)}
                         alt={person.name}
                         fill
                         className="object-cover"
@@ -106,7 +112,7 @@ export default function PeoplePage() {
                             <div className="w-48 h-48 rounded-2xl overflow-hidden bg-slate-800 shrink-0 relative">
                                 {person.image ? (
                                     <Image
-                                        src={person.image}
+                                        src={getImagePath(person.image)}
                                         alt={person.name}
                                         fill
                                         className="object-cover"
@@ -164,7 +170,7 @@ export default function PeoplePage() {
                                 <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0 overflow-hidden relative">
                                     {person.image ? (
                                         <Image
-                                            src={person.image}
+                                            src={getImagePath(person.image)}
                                             alt={person.name}
                                             fill
                                             className="object-cover"
