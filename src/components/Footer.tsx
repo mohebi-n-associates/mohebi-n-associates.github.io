@@ -36,6 +36,7 @@ export default function Footer() {
                             <li><Link href="/research" className="text-slate-400 hover:text-blue-400 transition-colors">Research</Link></li>
                             <li><Link href="/people" className="text-slate-400 hover:text-blue-400 transition-colors">Team</Link></li>
                             <li><Link href="/publications" className="text-slate-400 hover:text-blue-400 transition-colors">Publications</Link></li>
+                            <li><Link href="/funding" className="text-slate-400 hover:text-blue-400 transition-colors">Funding</Link></li>
                             <li><Link href="/join" className="text-slate-400 hover:text-blue-400 transition-colors">Join Us</Link></li>
                         </ul>
                     </div>
