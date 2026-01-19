@@ -106,7 +106,7 @@ export default function PeoplePage() {
                             <div className="w-48 h-48 rounded-2xl overflow-hidden bg-slate-800 shrink-0 relative">
                                 {person.image ? (
                                     <Image
-                                        src={getImagePath(person.image)}
+                                        src={person.image}
                                         alt={person.name}
                                         fill
                                         className="object-cover"
@@ -164,7 +164,7 @@ export default function PeoplePage() {
                                 <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0 overflow-hidden relative">
                                     {person.image ? (
                                         <Image
-                                            src={getImagePath(person.image)}
+                                            src={person.image}
                                             alt={person.name}
                                             fill
                                             className="object-cover"
