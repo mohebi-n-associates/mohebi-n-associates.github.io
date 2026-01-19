@@ -20,7 +20,7 @@ export const people: Person[] = [
         name: 'Ali Mohebi',
         role: 'Principal Investigator',
         group: 'principal_investigator',
-        bio: 'Assistant Professor of Psychology. Investigating the neural basis of motivation and decision making.',
+        bio: 'Assistant Professor of Psychology. Investigating the neural basis of cognition and decision making.',
         image: '/images/people/ali.jpg',
         email: 'amohebi@wisc.edu',
         twitter: 'https://twitter.com/mohebial',
