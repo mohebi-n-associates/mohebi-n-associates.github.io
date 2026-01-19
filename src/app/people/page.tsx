@@ -85,7 +85,7 @@ const PersonCard = ({ person }: { person: Person }) => (
 
 export default function PeoplePage() {
     const pi = people.filter(p => p.group === 'principal_investigator');
-    const currentMembers = people.filter(p => ['postdoc', 'grad_student', 'undergrad', 'pre_grad'].includes(p.group));
+    const currentMembers = people.filter(p => ['research_scientist','postdoc', 'grad_student', 'undergrad', 'lab_manager'].includes(p.group));
     const alumni = people.filter(p => p.group === 'alumni');
     const collaborators = people.filter(p => p.group === 'collaborator');
 

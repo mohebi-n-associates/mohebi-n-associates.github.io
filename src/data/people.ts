@@ -27,6 +27,15 @@ export const people: Person[] = [
         github: 'https://github.com/mohebial'
     },
     {
+        id: 'rob-spencer',
+        name: 'Robert Spencer',
+        role: 'Research Scientist',
+        group: 'research_scientist',
+        bio: 'Studying the role of dopamine in reward processing.',
+        image: '/images/people/rob_spencer.jpg',
+        email: 'rob.spencer@wisc.edu'
+    },
+    {
         id: 'jane-collaborator',
         name: 'Jane Smith',
         role: 'Professor, UCSF',
