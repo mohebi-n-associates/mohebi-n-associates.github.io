@@ -27,26 +27,26 @@ export default function Home() {
           />
         </div>
 
+        {/* Lab Logo Badge - Top Right Corner */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="absolute top-8 right-8 z-30 glass p-3 rounded-2xl border border-white/10 backdrop-blur-md"
+        >
+          <img
+            src="/images/logo.png"
+            alt="Mohebi & Associates Lab Logo"
+            className="w-16 h-16 md:w-20 md:h-20 drop-shadow-lg"
+          />
+        </motion.div>
+
         <div className="container mx-auto px-6 text-center z-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Lab Logo */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-8 flex justify-center"
-            >
-              <img
-                src="/images/logo.png"
-                alt="Mohebi & Associates Lab Logo"
-                className="w-32 h-32 md:w-40 md:h-40 drop-shadow-2xl"
-              />
-            </motion.div>
-
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-slate-100 drop-shadow-2xl">
               Decoding the Neural Dynamics <br /> of Decision Making
             </h1>
