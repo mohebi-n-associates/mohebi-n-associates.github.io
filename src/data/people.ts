@@ -24,7 +24,8 @@ export const people: Person[] = [
         image: '/images/people/ali.jpg',
         email: 'amohebi@wisc.edu',
         twitter: 'https://twitter.com/mohebial',
-        github: 'https://github.com/mohebial'
+        github: 'https://github.com/mohebial',
+        website: 'https://mohebial.com/'
     },
     {
         id: 'rob-spencer',
