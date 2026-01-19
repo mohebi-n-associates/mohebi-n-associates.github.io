@@ -24,55 +24,60 @@ const PersonCard = ({ person }: { person: Person }) => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="glass p-6 rounded-2xl border border-slate-700/50 hover:border-blue-500/30 transition-all group h-full flex flex-col"
+        className="glass rounded-2xl border border-slate-700/50 hover:border-blue-500/30 transition-all group h-full flex flex-col overflow-hidden"
     >
-        <div className="flex items-start gap-4 mb-4">
-            <div className="w-16 h-16 rounded-full overflow-hidden bg-slate-800 shrink-0 relative">
-                {person.image ? (
-                    <Image
-                        src={person.image}
-                        alt={person.name}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                ) : (
-                    <div className="w-full h-full flex items-center justify-center text-slate-600">
-                        <User className="w-8 h-8" />
-                    </div>
-                )}
-            </div>
-            <div>
-                <h3 className="text-lg font-bold text-slate-100">{person.name}</h3>
-                <p className="text-blue-400 text-sm font-medium">{person.role}</p>
-            </div>
+        {/* Large image at top */}
+        <div className="w-full h-72 bg-slate-800 shrink-0 relative overflow-hidden">
+            {person.image ? (
+                <Image
+                    src={person.image}
+                    alt={person.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+            ) : (
+                <div className="w-full h-full flex items-center justify-center text-slate-600">
+                    <User className="w-24 h-24" />
+                </div>
+            )}
+            {/* Gradient overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
         </div>
 
-        <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
-            {person.bio}
-        </p>
+        {/* Content section */}
+        <div className="p-6 flex flex-col flex-grow">
+            <div className="mb-4">
+                <h3 className="text-xl font-bold text-slate-100 mb-1">{person.name}</h3>
+                <p className="text-blue-400 text-sm font-medium">{person.role}</p>
+            </div>
 
-        <div className="flex gap-4 mt-auto">
-            {person.email && (
-                <Link href={`mailto:${person.email}`} className="text-slate-500 hover:text-blue-400 transition-colors">
-                    <Mail className="w-4 h-4" />
-                </Link>
-            )}
-            {person.twitter && (
-                <Link href={person.twitter} target="_blank" className="text-slate-500 hover:text-blue-400 transition-colors">
-                    <Twitter className="w-4 h-4" />
-                </Link>
-            )}
-            {person.github && (
-                <Link href={person.github} target="_blank" className="text-slate-500 hover:text-blue-400 transition-colors">
-                    <Github className="w-4 h-4" />
-                </Link>
-            )}
-            {person.website && (
-                <Link href={person.website} target="_blank" className="text-slate-500 hover:text-blue-400 transition-colors">
-                    <Globe className="w-4 h-4" />
-                </Link>
-            )}
+            <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                {person.bio}
+            </p>
+
+            <div className="flex gap-4 mt-auto pt-4 border-t border-slate-700/50">
+                {person.email && (
+                    <Link href={`mailto:${person.email}`} className="text-slate-500 hover:text-blue-400 transition-colors">
+                        <Mail className="w-5 h-5" />
+                    </Link>
+                )}
+                {person.twitter && (
+                    <Link href={person.twitter} target="_blank" className="text-slate-500 hover:text-blue-400 transition-colors">
+                        <Twitter className="w-5 h-5" />
+                    </Link>
+                )}
+                {person.github && (
+                    <Link href={person.github} target="_blank" className="text-slate-500 hover:text-blue-400 transition-colors">
+                        <Github className="w-5 h-5" />
+                    </Link>
+                )}
+                {person.website && (
+                    <Link href={person.website} target="_blank" className="text-slate-500 hover:text-blue-400 transition-colors">
+                        <Globe className="w-5 h-5" />
+                    </Link>
+                )}
+            </div>
         </div>
     </motion.div>
 );
@@ -102,31 +107,52 @@ export default function PeoplePage() {
             {pi.length > 0 && (
                 <div className="mb-24">
                     {pi.map(person => (
-                        <div key={person.id} className="glass p-8 rounded-3xl border border-blue-500/20 max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-start">
-                            <div className="w-48 h-48 rounded-2xl overflow-hidden bg-slate-800 shrink-0 relative">
-                                {person.image ? (
-                                    <Image
-                                        src={person.image}
-                                        alt={person.name}
-                                        fill
-                                        className="object-cover"
-                                        sizes="(max-width: 768px) 100vw, 50vw"
-                                        priority
-                                    />
-                                ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-slate-600">
-                                        <User className="w-16 h-16" />
+                        <div key={person.id} className="glass rounded-3xl border border-blue-500/20 max-w-5xl mx-auto overflow-hidden">
+                            <div className="flex flex-col md:flex-row">
+                                {/* Large PI image */}
+                                <div className="w-full md:w-96 h-96 bg-slate-800 shrink-0 relative">
+                                    {person.image ? (
+                                        <Image
+                                            src={person.image}
+                                            alt={person.name}
+                                            fill
+                                            className="object-cover"
+                                            sizes="(max-width: 768px) 100vw, 384px"
+                                            priority
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-slate-600">
+                                            <User className="w-32 h-32" />
+                                        </div>
+                                    )}
+                                </div>
+                                {/* Content */}
+                                <div className="p-8 flex flex-col justify-center">
+                                    <h2 className="text-3xl font-bold text-slate-100 mb-2">{person.name}</h2>
+                                    <p className="text-blue-400 text-lg font-medium mb-4">{person.role}</p>
+                                    <p className="text-slate-300 leading-relaxed mb-6">{person.bio}</p>
+                                    <div className="flex gap-4">
+                                        {person.email && (
+                                            <Link href={`mailto:${person.email}`} className="text-slate-400 hover:text-blue-400 transition-colors">
+                                                <Mail className="w-6 h-6" />
+                                            </Link>
+                                        )}
+                                        {person.twitter && (
+                                            <Link href={person.twitter} target="_blank" className="text-slate-400 hover:text-blue-400 transition-colors">
+                                                <Twitter className="w-6 h-6" />
+                                            </Link>
+                                        )}
+                                        {person.github && (
+                                            <Link href={person.github} target="_blank" className="text-slate-400 hover:text-blue-400 transition-colors">
+                                                <Github className="w-6 h-6" />
+                                            </Link>
+                                        )}
+                                        {person.website && (
+                                            <Link href={person.website} target="_blank" className="text-slate-400 hover:text-blue-400 transition-colors">
+                                                <Globe className="w-6 h-6" />
+                                            </Link>
+                                        )}
                                     </div>
-                                )}
-                            </div>
-                            <div>
-                                <h2 className="text-3xl font-bold text-slate-100 mb-2">{person.name}</h2>
-                                <p className="text-blue-400 text-lg font-medium mb-4">{person.role}</p>
-                                <p className="text-slate-300 leading-relaxed mb-6">{person.bio}</p>
-                                <div className="flex gap-4">
-                                    {person.email && <Link href={`mailto:${person.email}`}><Mail className="text-slate-400 hover:text-white" /></Link>}
-                                    {person.twitter && <Link href={person.twitter}><Twitter className="text-slate-400 hover:text-white" /></Link>}
-                                    {person.github && <Link href={person.github}><Github className="text-slate-400 hover:text-white" /></Link>}
                                 </div>
                             </div>
                         </div>
@@ -158,27 +184,35 @@ export default function PeoplePage() {
             {alumni.length > 0 && (
                 <div>
                     <SectionHeading>Alumni</SectionHeading>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {alumni.map(person => (
-                            <div key={person.id} className="glass p-4 rounded-xl flex items-center gap-4 border border-slate-800">
-                                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0 overflow-hidden relative">
+                            <motion.div
+                                key={person.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="glass rounded-xl border border-slate-800 hover:border-slate-700 transition-all overflow-hidden"
+                            >
+                                <div className="w-full h-48 bg-slate-800 relative">
                                     {person.image ? (
                                         <Image
                                             src={person.image}
                                             alt={person.name}
                                             fill
                                             className="object-cover"
-                                            sizes="40px"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         />
                                     ) : (
-                                        <User className="w-5 h-5 text-slate-500" />
+                                        <div className="w-full h-full flex items-center justify-center text-slate-600">
+                                            <User className="w-16 h-16" />
+                                        </div>
                                     )}
                                 </div>
-                                <div>
-                                    <h4 className="font-semibold text-slate-200 text-sm">{person.name}</h4>
-                                    <p className="text-xs text-slate-500">{person.role}</p>
+                                <div className="p-4">
+                                    <h4 className="font-semibold text-slate-200 text-base mb-1">{person.name}</h4>
+                                    <p className="text-sm text-slate-500">{person.role}</p>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
