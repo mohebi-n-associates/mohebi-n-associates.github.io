@@ -25,13 +25,23 @@ export function getPublications() {
     const bibPath = path.join(process.cwd(), 'src/data/references.bib');
     if (!fs.existsSync(bibPath)) return [];
 
-    const bibContent = fs.readFileSync(bibPath, 'utf-8');
-    const parsed = bibtexParse.toJSON(bibContent) as BibEntry[];
+    try {
+        const bibContent = fs.readFileSync(bibPath, 'utf-8');
+        const parsed = bibtexParse.toJSON(bibContent) as BibEntry[];
 
-    // Normalize and sort by year (descending)
-    return parsed.sort((a, b) => {
-        const yearA = parseInt(a.entryTags.year || '0');
-        const yearB = parseInt(b.entryTags.year || '0');
-        return yearB - yearA;
-    });
+        if (!Array.isArray(parsed)) {
+            console.error('BibTeX parsing failed: result is not an array');
+            return [];
+        }
+
+        // Normalize and sort by year (descending)
+        return parsed.sort((a, b) => {
+            const yearA = parseInt(a.entryTags.year || '0');
+            const yearB = parseInt(b.entryTags.year || '0');
+            return yearB - yearA;
+        });
+    } catch (error) {
+        console.error('Error parsing BibTeX file:', error);
+        return [];
+    }
 }
