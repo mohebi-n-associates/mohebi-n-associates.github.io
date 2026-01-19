@@ -27,29 +27,30 @@ export default function Home() {
           />
         </div>
 
-        {/* Lab Logo Badge - Top Right Corner */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="absolute top-8 right-8 z-30 glass p-3 rounded-2xl border border-white/10 backdrop-blur-md"
-        >
-          <img
-            src="/images/logo.png"
-            alt="Mohebi & Associates Lab Logo"
-            className="w-16 h-16 md:w-20 md:h-20 drop-shadow-lg"
-          />
-        </motion.div>
-
         <div className="container mx-auto px-6 text-center z-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-slate-100 drop-shadow-2xl">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 text-slate-100 drop-shadow-2xl">
               Decoding the Neural Dynamics <br /> of Decision Making
             </h1>
+            
+            {/* Lab Logo - Between headline and description */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mb-8 flex justify-center"
+            >
+              <img
+                src="/images/logo.png"
+                alt="Mohebi & Associates Lab Logo"
+                className="w-24 h-24 md:w-28 md:h-28 drop-shadow-2xl"
+              />
+            </motion.div>
+
             <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-10 leading-relaxed font-light drop-shadow-lg">
               We investigate how neuromodulatory signals interact with local circuit computations to drive learning and behavior.
             </p>
