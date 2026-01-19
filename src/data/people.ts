@@ -44,10 +44,11 @@ export const people: Person[] = [
         website: 'https://example.com'
     },
     {
-        id: 'john-doe',
-        name: 'John Doe',
+        id: 'lily-p',
+        name: 'Lilian Pelattini',
         role: 'Former Lab Manager',
         group: 'alumni',
-        bio: 'Currently a PhD student at MIT.',
+        image: '/images/people/lilian_pelattini.jpg',
+        bio: 'I received my B.S. in Neurobiology & Physiology from University of California-Davis in 2021. After graduation, I worked in Josh Berke’s lab at UCSF as a lab technician studying dopamine’s role in learning and motivation. I am most interested in the effects of neuromodulators on cognitive processes and reward-seeking behaviors. Outside of lab, I enjoy reading, cooking, horror movies, listening to music, and crossword puzzles. I’m currently working my way through the New York Times crossword archive.',
     }
 ];
