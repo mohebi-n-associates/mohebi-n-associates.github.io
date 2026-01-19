@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, BrainCircuit } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -35,11 +36,16 @@ export default function Header() {
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2 group">
-                    <div className="p-2 rounded-xl bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
-                        <BrainCircuit className="w-6 h-6 text-blue-400" />
+                    <div className="relative w-10 h-10">
+                        <Image
+                            src="/images/logo.png"
+                            alt="Mohebi and Associates Logo"
+                            fill
+                            className="object-contain"
+                        />
                     </div>
                     <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                        Mohebi Lab
+                        Mohebi and Associates
                     </span>
                 </Link>
 
