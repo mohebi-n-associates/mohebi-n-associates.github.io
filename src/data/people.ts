@@ -1,4 +1,4 @@
-export type PersonGroup = 'principal_investigator' | 'postdoc' | 'grad_student' | 'undergrad' | 'pre_grad' | 'alumni' | 'collaborator';
+export type PersonGroup = 'principal_investigator' | 'postdoc' | 'grad_student' | 'undergrad' | 'pre_grad' | 'alumni' | 'collaborator' | 'research_scientist';
 
 export interface Person {
     id: string;
