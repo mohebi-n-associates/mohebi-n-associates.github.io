@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Research', href: '/research' },
+    { name: 'Techniques', href: '/techniques' },
     { name: 'People', href: '/people' },
     { name: 'Publications', href: '/publications' },
     { name: 'Join Us', href: '/join' },

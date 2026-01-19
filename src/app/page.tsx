@@ -15,31 +15,37 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-24 pb-24">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        {/* Abstract Background */}
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/30 via-slate-950 to-slate-950" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        {/* Background - Calcium Imaging */}
+        <div className="absolute inset-0 -z-10 bg-slate-950">
+          <div className="absolute inset-0 bg-slate-950/60 z-10" /> {/* Dark Overlay */}
+          {/* Calcium Imaging Background */}
+          <img
+            src="/website/images/calcium-background.png"
+            alt="Calcium Imaging Background"
+            className="w-full h-full object-cover opacity-60 animate-pulse-slow"
+          />
+        </div>
 
-        <div className="container mx-auto px-6 text-center z-10">
+        <div className="container mx-auto px-6 text-center z-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-blue-400 to-purple-400">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-slate-100 drop-shadow-2xl">
               Decoding the Neural Dynamics <br /> of Decision Making
             </h1>
-            <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-              We investigate how neuromodulatory signals interaction with local circuit computations to drive learning and behavior.
+            <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-10 leading-relaxed font-light drop-shadow-lg">
+              We investigate how neuromodulatory signals interact with local circuit computations to drive learning and behavior.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/research" className="px-8 py-4 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-all flex items-center gap-2 group">
+              <Link href="/research" className="px-8 py-4 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-all flex items-center gap-2 group shadow-lg shadow-blue-900/20">
                 Explore Research
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link href="/publications" className="px-8 py-4 rounded-full glass text-slate-200 font-semibold hover:bg-white/10 transition-all">
+              <Link href="/publications" className="px-8 py-4 rounded-full glass bg-white/10 text-white font-semibold hover:bg-white/20 transition-all backdrop-blur-md border border-white/20">
                 Latest Publications
               </Link>
             </div>
@@ -91,7 +97,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Lab News / Updates Preview could go here */}
+      {/* Meet the Team Preview */}
+      <section className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="glass p-12 rounded-3xl border border-slate-700/50 relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20 z-0" />
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="text-left max-w-xl">
+              <h2 className="text-3xl font-bold text-slate-100 mb-6">Meet the Team</h2>
+              <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+                Our lab is a diverse group of researchers passionate about understanding the brain.
+                We are a collaborative team of postdocs, graduate students, and undergraduates.
+              </p>
+              <Link href="/people" className="inline-flex items-center gap-2 text-white font-semibold hover:text-blue-300 transition-colors group">
+                View All Members <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            {/* Visual stack of team member placeholders */}
+            <div className="flex -space-x-4">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="w-16 h-16 rounded-full border-4 border-slate-800 bg-slate-700 flex items-center justify-center text-xs text-slate-500">
+                  Img
+                </div>
+              ))}
+              <div className="w-16 h-16 rounded-full border-4 border-slate-800 bg-blue-600 flex items-center justify-center text-sm font-bold text-white">
+                +5
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 }
