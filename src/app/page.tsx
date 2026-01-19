@@ -21,7 +21,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-slate-950/60 z-10" /> {/* Dark Overlay */}
           {/* Calcium Imaging Background */}
           <img
-            src="/website/images/calcium-background.png"
+            src="/images/calcium-background.png"
             alt="Calcium Imaging Background"
             className="w-full h-full object-cover opacity-60 animate-pulse-slow"
           />
