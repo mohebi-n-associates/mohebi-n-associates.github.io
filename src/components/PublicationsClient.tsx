@@ -8,13 +8,12 @@ import scholarStats from '@/data/scholar-stats.json';
 
 interface PublicationsClientProps {
     publications: BibEntry[];
+    featuredPublications: BibEntry[];
     googleScholarUrl: string;
 }
 
-export default function PublicationsClient({ publications, googleScholarUrl }: PublicationsClientProps) {
-    const selectedPubs = publications
-        .filter(p => p.entryTags.keywords?.includes('featured'))
-        .slice(0, 3);
+export default function PublicationsClient({ publications, featuredPublications, googleScholarUrl }: PublicationsClientProps) {
+    const selectedPubs = featuredPublications; // Use explicit list from file
     const allPubs = publications; // Full list includes everything as requested
 
     // Find max citations for graph scaling
@@ -178,11 +177,11 @@ export default function PublicationsClient({ publications, googleScholarUrl }: P
                                 <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">Citation History</h4>
                             </div>
 
-                            <div className="flex items-end gap-2 h-40 pt-4 pb-2 px-2">
+                            <div className="flex items-stretch gap-2 h-40 pt-4 pb-2 px-2">
                                 {scholarStats.graphData.map((d) => {
-                                    const heightPercent = (d.citations / maxCitations) * 100;
+                                    const heightPercent = maxCitations > 0 ? (d.citations / maxCitations) * 100 : 0;
                                     return (
-                                        <div key={d.year} className="flex-1 flex flex-col items-center group relative">
+                                        <div key={d.year} className="flex-1 flex flex-col justify-end items-center group relative">
                                             <div
                                                 className="w-full bg-slate-700 rounded-t-sm group-hover:bg-blue-500 transition-colors relative"
                                                 style={{ height: `${heightPercent}%` }}

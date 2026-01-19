@@ -21,8 +21,8 @@ export interface BibEntry {
     };
 }
 
-export function getPublications() {
-    const bibPath = path.join(process.cwd(), 'src/data/references.bib');
+export function parseBibFile(relativePath: string) {
+    const bibPath = path.join(process.cwd(), relativePath);
     if (!fs.existsSync(bibPath)) return [];
 
     try {
@@ -30,7 +30,7 @@ export function getPublications() {
         const parsed = bibtexParse.toJSON(bibContent) as BibEntry[];
 
         if (!Array.isArray(parsed)) {
-            console.error('BibTeX parsing failed: result is not an array');
+            console.error(`BibTeX parsing failed for ${relativePath}: result is not an array`);
             return [];
         }
 
@@ -41,7 +41,15 @@ export function getPublications() {
             return yearB - yearA;
         });
     } catch (error) {
-        console.error('Error parsing BibTeX file:', error);
+        console.error(`Error parsing BibTeX file ${relativePath}:`, error);
         return [];
     }
+}
+
+export function getPublications() {
+    return parseBibFile('src/data/references.bib');
+}
+
+export function getFeaturedPublications() {
+    return parseBibFile('src/data/featured.bib');
 }
