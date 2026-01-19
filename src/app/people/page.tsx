@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Mail, Github, Twitter, User, Globe } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { people, Person } from '@/data/people';
 
 const SectionHeading = ({ children }: { children: React.ReactNode }) => (
@@ -28,7 +29,13 @@ const PersonCard = ({ person }: { person: Person }) => (
         <div className="flex items-start gap-4 mb-4">
             <div className="w-16 h-16 rounded-full overflow-hidden bg-slate-800 shrink-0 relative">
                 {person.image ? (
-                    <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
+                    <Image
+                        src={person.image}
+                        alt={person.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-slate-600">
                         <User className="w-8 h-8" />
@@ -98,7 +105,14 @@ export default function PeoplePage() {
                         <div key={person.id} className="glass p-8 rounded-3xl border border-blue-500/20 max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-start">
                             <div className="w-48 h-48 rounded-2xl overflow-hidden bg-slate-800 shrink-0 relative">
                                 {person.image ? (
-                                    <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
+                                    <Image
+                                        src={person.image}
+                                        alt={person.name}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        priority
+                                    />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center text-slate-600">
                                         <User className="w-16 h-16" />
@@ -147,8 +161,18 @@ export default function PeoplePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {alumni.map(person => (
                             <div key={person.id} className="glass p-4 rounded-xl flex items-center gap-4 border border-slate-800">
-                                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0 overflow-hidden">
-                                    {person.image ? <img src={person.image} className="w-full h-full object-cover" /> : <User className="w-5 h-5 text-slate-500" />}
+                                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0 overflow-hidden relative">
+                                    {person.image ? (
+                                        <Image
+                                            src={person.image}
+                                            alt={person.name}
+                                            fill
+                                            className="object-cover"
+                                            sizes="40px"
+                                        />
+                                    ) : (
+                                        <User className="w-5 h-5 text-slate-500" />
+                                    )}
                                 </div>
                                 <div>
                                     <h4 className="font-semibold text-slate-200 text-sm">{person.name}</h4>
