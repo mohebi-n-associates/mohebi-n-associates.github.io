@@ -1,3 +1,6 @@
+import { StaticImageData } from 'next/image';
+import aliImg from '@/assets/images/ali-mohebi.jpg';
+
 export type PersonGroup = 'principal_investigator' | 'postdoc' | 'grad_student' | 'undergrad' | 'pre_grad' | 'alumni' | 'collaborator';
 
 export interface Person {
@@ -6,7 +9,7 @@ export interface Person {
     role: string; // Display role e.g. "PhD Student"
     group: PersonGroup;
     bio: string;
-    image?: string;
+    image?: string | StaticImageData;
     email?: string;
     twitter?: string;
     scholar?: string;
@@ -21,7 +24,7 @@ export const people: Person[] = [
         role: 'Principal Investigator',
         group: 'principal_investigator',
         bio: 'Assistant Professor of Psychology. Investigating the neural basis of motivation and decision making.',
-        image: '/images/calcium-background.png', // Temporary debug swap
+        image: aliImg,
         email: 'amohebi@wisc.edu',
         twitter: 'https://twitter.com/mohebial',
         github: 'https://github.com/mohebial'
