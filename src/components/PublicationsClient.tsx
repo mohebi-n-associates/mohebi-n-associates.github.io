@@ -12,7 +12,9 @@ interface PublicationsClientProps {
 }
 
 export default function PublicationsClient({ publications, googleScholarUrl }: PublicationsClientProps) {
-    const selectedPubs = publications.filter(p => p.entryTags.keywords?.includes('featured'));
+    const selectedPubs = publications
+        .filter(p => p.entryTags.keywords?.includes('featured'))
+        .slice(0, 3);
     const allPubs = publications; // Full list includes everything as requested
 
     // Find max citations for graph scaling
@@ -36,12 +38,12 @@ export default function PublicationsClient({ publications, googleScholarUrl }: P
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 {/* Main Content: Publications Lists */}
                 <div className="lg:col-span-2 space-y-24">
-                    {/* Featured Publications (Fancy Box) */}
+                    {/* Featured Publications (Bolder Box) */}
                     {selectedPubs.length > 0 && (
                         <section>
                             <div className="flex items-center gap-3 mb-10">
-                                <div className="p-2 bg-yellow-500/10 rounded-lg">
-                                    <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
+                                <div className="p-2 bg-blue-500/10 rounded-lg">
+                                    <Star className="w-6 h-6 text-blue-400 fill-blue-400" />
                                 </div>
                                 <h2 className="text-3xl font-bold text-slate-100">Featured Research</h2>
                             </div>
@@ -50,22 +52,22 @@ export default function PublicationsClient({ publications, googleScholarUrl }: P
                                 {selectedPubs.map((pub, index) => (
                                     <motion.div
                                         key={`${pub.citationKey}-featured-${index}`}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: index * 0.1 }}
                                         className="group relative"
                                     >
-                                        <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl opacity-50 blur group-hover:opacity-75 transition duration-500" />
-                                        <div className="relative glass p-8 rounded-xl bg-slate-900/90 h-full flex flex-col">
+                                        <div className="absolute inset-0 bg-blue-500/20 translate-x-2 translate-y-2 rounded-xl group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300" />
+                                        <div className="relative bg-slate-900 border-2 border-slate-700 hover:border-blue-500 p-8 rounded-xl transition-colors duration-300">
                                             <div className="flex flex-col md:flex-row gap-6 md:items-start">
-                                                {/* Optional: Placeholder for paper visual/abstract art if we had it */}
-                                                <div className="hidden md:flex w-24 h-24 shrink-0 rounded-lg bg-slate-800 items-center justify-center border border-slate-700">
-                                                    <BookOpen className="w-10 h-10 text-slate-600" />
+                                                {/* Bold Icon Box */}
+                                                <div className="hidden md:flex w-20 h-20 shrink-0 rounded-lg bg-slate-800 items-center justify-center border-2 border-slate-700 group-hover:border-blue-500/50 group-hover:bg-blue-500/10 transition-colors">
+                                                    <BookOpen className="w-8 h-8 text-slate-400 group-hover:text-blue-400 transition-colors" />
                                                 </div>
 
                                                 <div className="flex-grow">
-                                                    <h3 className="text-2xl font-bold text-slate-100 mb-3 group-hover:text-blue-400 transition-colors">
+                                                    <h3 className="text-2xl font-bold text-slate-50 mb-3 group-hover:text-blue-400 transition-colors">
                                                         {pub.entryTags.url ? (
                                                             <Link href={pub.entryTags.url} target="_blank">
                                                                 {pub.entryTags.title}
@@ -74,14 +76,14 @@ export default function PublicationsClient({ publications, googleScholarUrl }: P
                                                             pub.entryTags.title
                                                         )}
                                                     </h3>
-                                                    <p className="text-slate-300 text-lg mb-4 leading-relaxed font-light">
+                                                    <p className="text-slate-300 text-lg mb-4 font-medium">
                                                         {pub.entryTags.author}
                                                     </p>
-                                                    <div className="flex flex-wrap items-center gap-4 text-sm">
-                                                        <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 font-semibold border border-blue-500/30">
+                                                    <div className="flex flex-wrap items-center gap-4 text-sm font-semibold">
+                                                        <span className="px-3 py-1 rounded bg-blue-600 text-white shadow-lg shadow-blue-900/50">
                                                             {pub.entryTags.journal}
                                                         </span>
-                                                        <span className="text-slate-500 font-mono">{pub.entryTags.year}</span>
+                                                        <span className="text-slate-400">{pub.entryTags.year}</span>
                                                         {pub.entryTags.doi && (
                                                             <Link href={`https://doi.org/${pub.entryTags.doi}`} target="_blank" className="text-slate-400 hover:text-white flex items-center gap-1 group/link">
                                                                 DOI <ExternalLink className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform" />
