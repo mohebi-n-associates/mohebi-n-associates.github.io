@@ -1,7 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Microscope, Activity, Cpu } from 'lucide-react';
+import { Microscope, Activity, Cpu, LucideIcon } from 'lucide-react';
+import { techniques } from '@/data/techniques';
+
+const iconMap: Record<string, LucideIcon> = {
+    Microscope,
+    Activity,
+    Cpu,
+};
+
+const colorMap = {
+    blue: { bg: 'bg-blue-500/20', text: 'text-blue-400', border: 'bg-blue-500/5' },
+    purple: { bg: 'bg-purple-500/20', text: 'text-purple-400', border: 'bg-purple-500/5' },
+    cyan: { bg: 'bg-cyan-500/20', text: 'text-cyan-400', border: 'bg-cyan-500/5' },
+};
 
 export default function TechniquesPage() {
     return (
@@ -20,83 +33,46 @@ export default function TechniquesPage() {
             </motion.div>
 
             <div className="space-y-24">
-                {/* Electrophysiology */}
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className="flex flex-col md:flex-row gap-12 items-center"
-                >
-                    <div className="flex-1">
-                        <div className="w-16 h-16 rounded-xl bg-blue-500/20 flex items-center justify-center mb-6 text-blue-400">
-                            <Activity className="w-8 h-8" />
-                        </div>
-                        <h2 className="text-3xl font-bold text-slate-100 mb-4">In Vivo Electrophysiology</h2>
-                        <p className="text-lg text-slate-400 leading-relaxed">
-                            We perform large-scale extracellular recordings using high-density silicon probes (Neuropixels) to monitor the activity of hundreds of neurons simultaneously in behaving animals. This allows us to track neural dynamics across multiple brain regions with millisecond precision.
-                        </p>
-                    </div>
-                    <div className="flex-1 w-full">
-                        <div className="relative aspect-video rounded-2xl overflow-hidden glass border border-slate-700/50">
-                            <div className="absolute inset-0 bg-blue-500/5" />
-                            <div className="flex items-center justify-center h-full text-slate-600">
-                                Image: E-phys Setup
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
+                {techniques.map((tech, index) => {
+                    const Icon = iconMap[tech.icon];
+                    const colors = colorMap[tech.color];
 
-                {/* Imaging */}
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className="flex flex-col md:flex-row-reverse gap-12 items-center"
-                >
-                    <div className="flex-1">
-                        <div className="w-16 h-16 rounded-xl bg-purple-500/20 flex items-center justify-center mb-6 text-purple-400">
-                            <Microscope className="w-8 h-8" />
-                        </div>
-                        <h2 className="text-3xl font-bold text-slate-100 mb-4">Calcium Imaging</h2>
-                        <p className="text-lg text-slate-400 leading-relaxed">
-                            We use 1-photon and 2-photon calcium imaging to visualize the activity of genetically defined neuronal populations. By expressing fluorescent calcium indicators (GCaMP), we can track the activity of specific cell types during complex behaviors.
-                        </p>
-                    </div>
-                    <div className="flex-1 w-full">
-                        <div className="relative aspect-video rounded-2xl overflow-hidden glass border border-slate-700/50">
-                            <div className="absolute inset-0 bg-purple-500/5" />
-                            <div className="flex items-center justify-center h-full text-slate-600">
-                                Image: 2P Imaging
+                    return (
+                        <motion.div
+                            key={tech.id}
+                            initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 items-center`}
+                        >
+                            <div className="flex-1">
+                                <div className={`w-16 h-16 rounded-xl ${colors.bg} flex items-center justify-center mb-6 ${colors.text}`}>
+                                    <Icon className="w-8 h-8" />
+                                </div>
+                                <h2 className="text-3xl font-bold text-slate-100 mb-4">{tech.title}</h2>
+                                <p className="text-lg text-slate-400 leading-relaxed">
+                                    {tech.description}
+                                </p>
                             </div>
-                        </div>
-                    </div>
-                </motion.div>
-
-                {/* Computational Models */}
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className="flex flex-col md:flex-row gap-12 items-center"
-                >
-                    <div className="flex-1">
-                        <div className="w-16 h-16 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-6 text-cyan-400">
-                            <Cpu className="w-8 h-8" />
-                        </div>
-                        <h2 className="text-3xl font-bold text-slate-100 mb-4">Computational Modeling</h2>
-                        <p className="text-lg text-slate-400 leading-relaxed">
-                            We develop reinforcement learning agents and neural network models to generate testable hypotheses about neural computation. We compare model behavior and internal representations with experimental data to understand the algorithms implemented by the brain.
-                        </p>
-                    </div>
-                    <div className="flex-1 w-full">
-                        <div className="relative aspect-video rounded-2xl overflow-hidden glass border border-slate-700/50">
-                            <div className="absolute inset-0 bg-cyan-500/5" />
-                            <div className="flex items-center justify-center h-full text-slate-600">
-                                Image: Model Diagram
+                            <div className="flex-1 w-full">
+                                <div className="relative aspect-video rounded-2xl overflow-hidden glass border border-slate-700/50">
+                                    <div className={`absolute inset-0 ${colors.border}`} />
+                                    {tech.image ? (
+                                        <img
+                                            src={tech.image}
+                                            alt={tech.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    ) : (
+                                        <div className="flex items-center justify-center h-full text-slate-600">
+                                            <span>Image: {tech.title}</span>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </motion.div>
+                        </motion.div>
+                    );
+                })}
             </div>
         </div>
     );
