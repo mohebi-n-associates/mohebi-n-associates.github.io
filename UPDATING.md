@@ -70,6 +70,7 @@ website/
 │   │   ├── layout.tsx     # Root layout
 │   │   ├── globals.css    # Global styles
 │   │   ├── components/    # Page-specific components
+│   │   ├── funding/       # Funding page
 │   │   ├── join/          # Join page
 │   │   ├── news/          # News page
 │   │   ├── people/        # People/Team page
@@ -80,6 +81,7 @@ website/
 │   │   ├── Header.tsx     # Site header/navigation
 │   │   └── Footer.tsx     # Site footer
 │   └── data/              # Content data files
+│       ├── funding.ts     # Funding agencies data
 │       ├── people.ts      # Team member data
 │       ├── publications.ts # Publication data
 │       ├── research.ts    # Research areas
@@ -178,6 +180,26 @@ Update `src/data/techniques.ts`:
 }
 ```
 
+### Adding a Funding Agency
+
+Update `src/data/funding.ts`:
+
+```typescript
+{
+    id: 'agency-abbreviation',  // e.g., 'nih', 'nsf'
+    name: 'Full Agency Name',
+    url: 'https://agency-website.org',  // Optional
+    logo: '/images/funding/agency-logo.png',  // Optional
+    description: 'Grant details or description'  // Optional
+}
+```
+
+**Tips:**
+- Use lowercase abbreviations for the `id`
+- Include grant numbers or specific program names in the `description`
+- Add agency logos to `public/images/funding/` if available
+- URL should link to the agency's homepage or specific program page
+
 ---
 
 ## Updating Existing Content
@@ -221,6 +243,7 @@ Edit `src/app/page.tsx` to modify:
 
 #### Other Pages
 Each page has its own directory:
+- Funding page: `src/app/funding/page.tsx`
 - Join page: `src/app/join/page.tsx`
 - News page: `src/app/news/page.tsx`
 - People page: `src/app/people/page.tsx`
@@ -253,6 +276,7 @@ public/
 ├── images/
 │   ├── people/          # Team member photos
 │   ├── techniques/      # Technique illustrations
+│   ├── funding/         # Funding agency logos
 │   └── research/        # Research images (if needed)
 ├── papers/              # PDF publications (if hosting)
 └── logos/               # Lab logos, university logos
@@ -611,6 +635,7 @@ npm update
 | Publications | `src/data/publications.ts` | `public/papers/` |
 | Research areas | `src/data/research.ts` | N/A |
 | Techniques | `src/data/techniques.ts` | `public/images/techniques/` |
+| Funding agencies | `src/data/funding.ts` | `public/images/funding/` |
 | Home page | `src/app/page.tsx` | Various |
 | Navigation | `src/components/Header.tsx` | N/A |
 | Footer | `src/components/Footer.tsx` | N/A |
@@ -688,6 +713,17 @@ interface Technique {
     icon: string;                            // Lucide icon name
     color: 'blue' | 'purple' | 'cyan';      // Color theme
     image?: string;                          // Path to image (optional)
+}
+```
+
+### Agency Interface
+```typescript
+interface Agency {
+    id: string;           // Unique identifier (lowercase abbreviation)
+    name: string;         // Full agency name
+    url?: string;         // Agency website URL (optional)
+    logo?: string;        // Path to logo: '/images/funding/agency.png' (optional)
+    description?: string; // Grant details or description (optional)
 }
 ```
 
