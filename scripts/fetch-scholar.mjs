@@ -27,43 +27,32 @@ async function fetchScholarData() {
 
         console.log(`Extracted: Citations=${citations}, h-index=${hIndex}`);
 
-        // Extract the graph HTML
-        // The graph usually resides in #gsc_rsb_cit but the user's snippet suggests grabbing the whole wrapper or recreating it.
-        // The visual graph in Google Scholar is actually rendered via JS or CSS bars.
-        // Let's grab the table that shows the years and citations which is usually #gsc_rsb_cit (Citation indices) 
-        // AND #gsc_rsb_co (Co-authors) - wait, the graph is often a separate element .gsc_md_hist_b
+        // Extract the graph data
+        const graphData = [];
+        try {
+            // The graph years are in .gsc_g_t
+            const years = $('.gsc_g_t').map((i, el) => $(el).text()).get();
+            // The citation counts are in .gsc_g_a (often z-index represents height, but text contains count)
+            const counts = $('.gsc_g_a').map((i, el) => $(el).text()).get();
 
-        // In many scraper implementations, the graph is harder to grab exactly as is because it might be canvas or div bars.
-        // However, the user's PHP snippet suggests fetching the div with id "gsc_rsb_cit" and "gsc_rsb_mnd" (Histogram).
+            // Combine them
+            years.forEach((year, index) => {
+                const count = counts[index];
+                if (year && count) {
+                    graphData.push({ year: parseInt(year), citations: parseInt(count) });
+                }
+            });
 
-        // Let's try to grab the histogram wrapper specifically if possible.
-        // On the public profile, the histogram matches .gsc_md_hist_b or .gsc_g_hist_wrp
-
-        // Looking at the user's snippet regex: 
-        // /<div class="gsc_rsb_s gsc_prf_pnl" id="gsc_rsb_cit" role="region" aria-labelledby="gsc_prf_t-cit">(.*)<\/div><div class="gsc_rsb_s gsc_prf_pnl" id="gsc_rsb_mnd" role="region" aria-labelledby="gsc_prf_t-mnd">/is
-
-        // It seems they want the citation stats table and maybe the graph wrapper.
-        // Let's extract the citation Stats Table and the Histogram.
-
-        const citationTableHtml = $('#gsc_rsb_cit').html() || '';
-
-        // The histogram is usually inside #gsc_rsb_mnd ?? No, that's "Mandatory public service" sometimes? 
-        // Actually the graph container is often just part of the sidebar.
-        // Let's look for .gsc_md_hist_w (histogram wrapper).
-        const graphHtml = $('.gsc_md_hist_w').html() || '';
-
-        // We also need the CSS style block if it's there.
-        const styleBlock = $('style').first().html() || '';
+            console.log(`Extracted ${graphData.length} data points for the graph.`);
+        } catch (e) {
+            console.error('Error parsing graph:', e);
+        }
 
         // Create a simplified JSON payload
         const data = {
             citations,
             hIndex,
-            html: `
-        <style>${styleBlock}</style>
-        <div class="gsc_rsb_s gsc_prf_pnl" id="gsc_rsb_cit">${citationTableHtml}</div>
-        <div class="gsc_md_hist_w">${graphHtml}</div>
-      `,
+            graphData,
             lastUpdated: new Date().toISOString()
         };
 
@@ -74,7 +63,7 @@ async function fetchScholarData() {
         console.error('Error fetching scholar data:', error);
         // Write fallback/empty data so build doesn't fail
         if (!fs.existsSync(OUTPUT_FILE)) {
-            fs.writeFileSync(OUTPUT_FILE, JSON.stringify({ citations: '...', hIndex: '...', html: '' }, null, 2));
+            fs.writeFileSync(OUTPUT_FILE, JSON.stringify({ citations: '...', hIndex: '...', graphData: [] }, null, 2));
         }
     }
 }
