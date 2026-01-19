@@ -33,6 +33,20 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            {/* Lab Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-8 flex justify-center"
+            >
+              <img
+                src="/images/logo.png"
+                alt="Mohebi & Associates Lab Logo"
+                className="w-32 h-32 md:w-40 md:h-40 drop-shadow-2xl"
+              />
+            </motion.div>
+
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-slate-100 drop-shadow-2xl">
               Decoding the Neural Dynamics <br /> of Decision Making
             </h1>
