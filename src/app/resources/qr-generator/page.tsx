@@ -1,22 +1,24 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { QrCode, Download, Copy, Check, ArrowLeft } from 'lucide-react';
+import { QrCode, Download, Copy, Check, ArrowLeft, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export default function QRGeneratorPage() {
     const [text, setText] = useState('');
     const [qrGenerated, setQrGenerated] = useState(false);
     const [copied, setCopied] = useState(false);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [error, setError] = useState<string | null>(null);
+    const imgRef = useRef<HTMLImageElement>(null);
     const [qrDataUrl, setQrDataUrl] = useState<string>('');
 
-    const maxLength = 150;
+    const maxLength = 2000; // QR codes can store up to ~4000 alphanumeric characters
 
     const generateQR = async () => {
         if (!text.trim() || text.length > maxLength) return;
 
+        setError(null);
         // Use QR Server API to generate QR code
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(text)}`;
         setQrDataUrl(qrUrl);
@@ -26,36 +28,56 @@ export default function QRGeneratorPage() {
     const downloadQR = async () => {
         if (!qrDataUrl) return;
         
-        try {
-            const response = await fetch(qrDataUrl);
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'qrcode.png';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
-        } catch (error) {
-            // Fallback: open in new tab
-            window.open(qrDataUrl, '_blank');
-        }
+        setError(null);
+        // Direct download link - browser will handle it
+        const link = document.createElement('a');
+        link.href = qrDataUrl;
+        link.download = 'qrcode.png';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     const copyQRImage = async () => {
-        if (!qrDataUrl) return;
+        if (!imgRef.current) return;
         
+        setError(null);
         try {
-            const response = await fetch(qrDataUrl);
-            const blob = await response.blob();
-            await navigator.clipboard.write([
-                new ClipboardItem({ 'image/png': blob })
-            ]);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        } catch (error) {
-            console.error('Failed to copy image:', error);
+            // Create a canvas to draw the image
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = imgRef.current;
+            
+            // Wait for image to be loaded
+            if (!img.complete) {
+                await new Promise((resolve) => {
+                    img.onload = resolve;
+                });
+            }
+            
+            canvas.width = img.naturalWidth || 300;
+            canvas.height = img.naturalHeight || 300;
+            
+            if (ctx) {
+                ctx.drawImage(img, 0, 0);
+                canvas.toBlob(async (blob) => {
+                    if (blob) {
+                        try {
+                            await navigator.clipboard.write([
+                                new ClipboardItem({ 'image/png': blob })
+                            ]);
+                            setCopied(true);
+                            setTimeout(() => setCopied(false), 2000);
+                        } catch {
+                            setError('Copying images is not supported in this browser. Try downloading instead.');
+                        }
+                    }
+                }, 'image/png');
+            }
+        } catch {
+            setError('Failed to copy image. Try downloading instead.');
         }
     };
 
@@ -143,12 +165,21 @@ export default function QRGeneratorPage() {
                             <div className="flex flex-col items-center">
                                 <div className="p-4 bg-white rounded-2xl mb-6">
                                     <img
+                                        ref={imgRef}
                                         src={qrDataUrl}
                                         alt="Generated QR Code"
                                         className="w-[300px] h-[300px]"
+                                        crossOrigin="anonymous"
                                     />
                                 </div>
-                                <canvas ref={canvasRef} className="hidden" />
+                                
+                                {/* Error Message */}
+                                {error && (
+                                    <div className="flex items-center gap-2 text-amber-400 text-sm mb-4">
+                                        <AlertCircle className="w-4 h-4" />
+                                        {error}
+                                    </div>
+                                )}
                                 
                                 {/* Action Buttons */}
                                 <div className="flex gap-4">
