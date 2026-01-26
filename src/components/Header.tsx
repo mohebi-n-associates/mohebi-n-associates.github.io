@@ -12,6 +12,7 @@ const navigation = [
     { name: 'Techniques', href: '/techniques' },
     { name: 'People', href: '/people' },
     { name: 'Publications', href: '/publications' },
+    { name: 'Resources', href: '/resources' },
     { name: 'Join Us', href: '/join' },
 ];
 
