@@ -75,8 +75,8 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <Link
-            href="/NLDM"
+          <a
+            href="https://mohebi-n-associates.github.io/NLDM"
             className="glass p-8 md:p-10 rounded-3xl border border-blue-500/30 hover:border-blue-500/50 transition-all group block relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20 z-0" />
@@ -94,7 +94,7 @@ export default function Home() {
               </div>
               <ArrowRight className="w-6 h-6 text-blue-400 group-hover:translate-x-1 transition-transform flex-shrink-0" />
             </div>
-          </Link>
+          </a>
         </motion.div>
       </section>
 
