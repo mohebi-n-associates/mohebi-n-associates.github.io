@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, BrainCircuit, Activity, Target, LucideIcon } from 'lucide-react';
+import { ArrowRight, BrainCircuit, Activity, Target, BookOpen, LucideIcon } from 'lucide-react';
 import { researchAreas } from '@/data/research';
 
 const iconMap: Record<string, LucideIcon> = {
@@ -66,6 +66,36 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+      </section>
+
+      {/* NLDM Course Banner */}
+      <section className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <Link
+            href="/NLDM"
+            className="glass p-8 md:p-10 rounded-3xl border border-blue-500/30 hover:border-blue-500/50 transition-all group block relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20 z-0" />
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-6">
+              <div className="p-4 rounded-xl bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
+                <BookOpen className="w-8 h-8 text-blue-400" />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-100 mb-2 group-hover:text-blue-400 transition-colors">
+                  NLDM: Neurobiology of Learning and Decision-Making
+                </h2>
+                <p className="text-slate-400 leading-relaxed">
+                  Explore our graduate course covering neural mechanisms of learning, reward processing, and computational models of decision-making.
+                </p>
+              </div>
+              <ArrowRight className="w-6 h-6 text-blue-400 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+            </div>
+          </Link>
+        </motion.div>
       </section>
 
       {/* Research Highlights - Carousel/Grid */}
