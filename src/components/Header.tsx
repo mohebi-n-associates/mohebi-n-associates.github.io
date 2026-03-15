@@ -104,6 +104,7 @@ export default function Header() {
                             <div className="flex flex-col gap-1">
                                 <Link
                                     href="/"
+                                    onClick={() => setIsOpen(false)}
                                     className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                                         pathname === '/' ? 'text-white bg-white/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
                                     }`}
@@ -114,6 +115,7 @@ export default function Header() {
                                     <Link
                                         key={item.name}
                                         href={item.href}
+                                        onClick={() => setIsOpen(false)}
                                         className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                                             pathname === item.href
                                                 ? 'text-white bg-white/5'
